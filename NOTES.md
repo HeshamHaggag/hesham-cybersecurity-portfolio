@@ -1,12 +1,19 @@
-# Insecure Direct Object Reference (IDOR) – Example Notes
+# SQL Injection Lab – Example Notes
 
-Scenario:
-- Parameter `user_id` or `invoice_id` can be modified to access other users' data.
+Target: Demo web application (e.g. DVWA / test environment)
 
-Approach:
-- Change numeric IDs step by step in authorized test accounts
-- Check access control validation
+Performed tests:
+- Identification of injectable parameters using special characters and boolean tests
+- Error-based and boolean-based SQL injection checks
+- Determining number of columns with `ORDER BY` and `UNION SELECT`
+- Extracting example data in a controlled lab environment
 
-Mitigation:
-- Enforce proper authorization checks on the server side
-- Use indirect references or access control checks per object
+Example payload (lab context only):
+- `' OR '1'='1' -- `
+- `' UNION SELECT NULL, @@version -- `
+
+Reporting:
+- Describe vulnerable parameter
+- Show proof-of-concept payload
+- Rate risk (e.g. High)
+- Provide remediation: use prepared statements, parameterized queries, input validation
